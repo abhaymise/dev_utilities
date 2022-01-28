@@ -6,11 +6,12 @@
 
 Configuration steps in Pycharm : Ctrl+Alt+S -> Settings/Preferences -> Editor -> File and Code Templates -> Python scripts
 
-- References 
-https://www.jetbrains.com/help/pycharm/using-file-and-code-templates.html#syntax
-https://stackoverflow.com/questions/1523427/what-is-the-common-header-format-of-python-files
-http://epydoc.sourceforge.net/manual-fields.html#module-metadata-variables
-'''
+## References 
+- https://www.jetbrains.com/help/pycharm/using-file-and-code-templates.html#syntax
+- https://stackoverflow.com/questions/1523427/what-is-the-common-header-format-of-python-files
+- http://epydoc.sourceforge.net/manual-fields.html#module-metadata-variables
+
+```
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -32,4 +33,4 @@ __status__ = "POC"
  if __name__ == '__main__': 
     pass
     
-'''
+```
