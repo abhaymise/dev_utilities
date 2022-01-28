@@ -1,8 +1,8 @@
 ## Module header template
-> This doc explains the steps that a developer should take to write the module's template each time when they create new module in pycharm
-> This also highlights set of metadata that one should have in their module
-> This makes your code writing look professional 
-> This configuration can save your time
+- This doc explains the steps that a developer should take to write the module's template each time when they create new module in pycharm
+- This also highlights set of metadata that one should have in their module
+- This makes your code writing look professional 
+- This configuration can save your time
 
 Configuration steps in Pycharm : Ctrl+Alt+S -> Settings/Preferences -> Editor -> File and Code Templates -> Python scripts
 
