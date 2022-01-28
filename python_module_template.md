@@ -5,8 +5,11 @@
 - This configuration can save your time
 
 **Configuration steps in Pycharm :**
+
    Ctrl+Alt+S -> Settings/Preferences -> Editor -> File and Code Templates -> Python scripts
+   
 **Paste the following code in the section :**
+
 ```
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
