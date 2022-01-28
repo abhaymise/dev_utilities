@@ -4,13 +4,8 @@
 - This makes your code writing look professional 
 - This configuration can save your time
 
-Configuration steps in Pycharm : Ctrl+Alt+S -> Settings/Preferences -> Editor -> File and Code Templates -> Python scripts
-
-## References 
-- https://www.jetbrains.com/help/pycharm/using-file-and-code-templates.html#syntax
-- https://stackoverflow.com/questions/1523427/what-is-the-common-header-format-of-python-files
-- http://epydoc.sourceforge.net/manual-fields.html#module-metadata-variables
-
+** Configuration steps in Pycharm : Ctrl+Alt+S -> Settings/Preferences -> Editor -> File and Code Templates -> Python scripts
+** Paste the following code in the section :
 ```
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -34,3 +29,9 @@ __status__ = "POC"
     pass
     
 ```
+## References 
+- https://www.jetbrains.com/help/pycharm/using-file-and-code-templates.html#syntax
+- https://stackoverflow.com/questions/1523427/what-is-the-common-header-format-of-python-files
+- http://epydoc.sourceforge.net/manual-fields.html#module-metadata-variables
+
+This site was built using [GitHub Pages](https://pages.github.com/).
