@@ -54,7 +54,7 @@ def deserialize_to_image_array(image_byte_array ):
 @timeit
 def save_image_array(image_array,file_name,ext):
     saving_dir = "static"
-    image_path = f"{saving_dir}/{file_name}.{ext}"
+    image_path = f"{saving_dir}/{file_name}{ext}"
     cv2.imwrite(image_path,image_array)
     return "success"
 
@@ -73,7 +73,7 @@ async def upload_file(file: UploadFile | None = None):
         return {"filename": file_name,"size":image_array.shape}
 
 @timeit
-@app.post("/uploadfiles/")
+@app.post("/upload/images/")
 async def create_upload_files(files: list[UploadFile]):
     file_count = len(files)
     filenames = [file.filename for file in files]
@@ -81,12 +81,11 @@ async def create_upload_files(files: list[UploadFile]):
     file_size = []
     for file in files:
         file_content = await file.read()
-        print(type(file_content))
         file_name = file.filename
         file_content_type = file.content_type
         if file_content_type == "image/jpeg":
             image_array = np.fromstring(file_content,np.uint8)
-            save_image_array(image_array, file_name=file_name, ext="jpeg")
+            save_image_array(image_array, file_name=file_name, ext="")
     return {
         "file_count":file_count,
         "filenames": filenames
