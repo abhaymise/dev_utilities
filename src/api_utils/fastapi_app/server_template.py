@@ -1,10 +1,12 @@
-from fastapi import FastAPI,Request
-import numpy as np
-import cv2
 from pathlib import Path
+from typing import Optional
+
+import cv2
+import numpy as np
 import uvicorn
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, UploadFile
+from fastapi import Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 
 app = FastAPI()
@@ -52,8 +54,9 @@ async def main():
 def health():
     return {"status":"ok"}
 
+
 @app.post("/files/")
-async def create_file(file: bytes | None = File(None)):
+async def create_file(file: Optional[bytes] = File(None)):
     if not file:
         return {"message": "No file sent"}
     else:
@@ -68,8 +71,9 @@ You can get metadata from the uploaded file.
 https://fastapi.tiangolo.com/tutorial/request-files/
 """
 
+
 @app.post("/uploadfile/")
-async def create_upload_file(file: UploadFile | None = None):
+async def create_upload_file(file: Optional[UploadFile] = None):
     if not file:
         return {"message": "No upload file sent"}
     else:

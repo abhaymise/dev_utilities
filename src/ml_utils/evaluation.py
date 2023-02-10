@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Module desciption: 
+Module description:
 Description of what evaluation.py does.
 """
 # evaluation.py created at 10-02-2023
@@ -17,10 +17,11 @@ __email__ = ""
 
 from abc import ABC, abstractmethod
 from typing import List
+
 import numpy as np
 
 
-class ClassificationTest:
+class ClassificationTestTemplate(ABC):
 
     def __init__(self, class_names: List, true_labels: np.array, predicted_probabilities: np.array):
         """

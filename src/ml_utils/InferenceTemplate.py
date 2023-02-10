@@ -16,6 +16,7 @@ __maintainer__ = ""
 __email__ = ""
 
 from abc import ABC, abstractmethod
+
 import numpy as np
 
 
