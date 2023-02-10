@@ -12,7 +12,7 @@ import numpy as np
 from urllib.request import urlopen
 
 def serialize_image_array(image_array):
-    success,encoded_image = cv2.endecode(".jpg",image_array)
+    success,encoded_image = cv2.encode(".jpg",image_array)
     image_byte_array = encoded_image.tobytes()
     return image_byte_array
 
