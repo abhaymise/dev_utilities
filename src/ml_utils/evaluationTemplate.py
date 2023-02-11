@@ -3,9 +3,9 @@
 
 """
 Module description:
-Description of what evaluation.py does.
+Description of what evaluationTemplate.py does.
 """
-# evaluation.py created at 10-02-2023
+# evaluationTemplate.py created at 10-02-2023
 __author__ = "Abhay Kumar"
 __date__ = "10-02-2023"
 __copyright__ = "Copyright 2022"

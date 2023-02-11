@@ -26,7 +26,9 @@ class ClassificationInference(ABC):
     """
 
     def __init__(self, model_location: str):
-        pass
+        self.model_obj = None
+        self.model_location = model_location
+        self.class_names = []
 
     @staticmethod
     @abstractmethod
@@ -36,6 +38,17 @@ class ClassificationInference(ABC):
     @abstractmethod
     def load_model(self):
         pass
+
+    def load_classes(self, labels: list):
+        pass
+
+    def invalidate_model(self):
+        if self.model_obj:
+            self.model_obj = None
+
+    def invalidate_class_names(self):
+        if self.class_names:
+            self.class_names = []
 
     @abstractmethod
     def preprocess(self):

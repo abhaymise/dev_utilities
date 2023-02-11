@@ -1,11 +1,8 @@
-from fastapi import FastAPI,Request
-import numpy as np
 import cv2
-from pathlib import Path
+import numpy as np
 import uvicorn
+from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 app_name = "sample fast api server"

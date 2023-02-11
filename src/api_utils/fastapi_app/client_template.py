@@ -1,6 +1,6 @@
-import requests
-import json
 import cv2
+import requests
+
 
 def upload_image_as_bytearray(image_array):
     api_end_point = "http://0.0.0.0:8888/upload/image"
