@@ -4,7 +4,7 @@
     3. Extract features from FC layers
     4. Attach Linear FC head with num_classes as final output
     5. Initialise weights randomly
-    6. Train with a higher LR for few epochs
+    6. Train with a lower LR for few epochs
     7. Evaluate
 2. Fine Tuning
     1. Complete Experiment 1

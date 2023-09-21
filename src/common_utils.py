@@ -30,7 +30,7 @@ def getCreationTime():
     return date_time
 
 
-def getuniquehahcode():
+def getuniquehashcode():
     # datetime object containing current date and time
     now = datetime.now()
     # dd/mm/YY H:M:S
