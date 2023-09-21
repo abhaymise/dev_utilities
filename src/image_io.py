@@ -1,9 +1,3 @@
-# image_io created at 04/02/22
-__author__ = "Abhay Kumar"
-__date__ = "04/02/22"
-__copyright__ = "Copyright 2022"
-__license__ = ""
-
 """
 This module contains common utilities related to image
 """

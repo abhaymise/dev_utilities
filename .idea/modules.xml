@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../MLApp/.idea/MLApp.iml" filepath="$PROJECT_DIR$/../MLApp/.idea/MLApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/dev_utilities.iml" filepath="$PROJECT_DIR$/.idea/dev_utilities.iml" />
     </modules>
   </component>
