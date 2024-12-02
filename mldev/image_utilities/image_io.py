@@ -18,6 +18,27 @@ def get_mime_type(file_path):
     mime_type, _ = mimetypes.guess_type(file_path)
     return mime_type
 
+def array_to_mime_type(img_array):
+    """
+    Get the MIME type from an image array by attempting to save it as a JPEG or PNG.
+
+    Args:
+        img_array (numpy.ndarray): Image represented as a NumPy array.
+
+    Returns:
+        str: Inferred MIME type of the image.
+    """
+    img = Image.fromarray(img_array)
+    with BytesIO() as buffer:
+        try:
+            img.save(buffer, format="JPEG")
+            return "image/jpeg"
+        except Exception:
+            buffer.truncate(0)
+            buffer.seek(0)
+            img.save(buffer, format="PNG")
+            return "image/png"
+
 def image_to_base64(file_path):
     """
     Convert an image to Base64 data.
@@ -28,9 +49,21 @@ def image_to_base64(file_path):
     Returns:
         str: Base64-encoded string of the image.
     """
-    with open(file_path, "rb") as img_file:
-        base64_data = base64.b64encode(img_file.read()).decode("utf-8")
-    return base64_data
+    mime_type, = get_mime_type(file_path)
+    
+    if not mime_type:
+        raise ValueError("Cannot determine the MIME type of the file")
+    
+    # Read the file in binary mode
+    with open(file_path, 'rb') as file:
+        binary_data = file.read()
+    
+    # Encode the binary data to Base64
+    base64_data = base64.b64encode(binary_data).decode('utf-8')
+    
+    # Combine MIME type and Base64 string
+    base64_with_mime = f"data:{mime_type};base64,{base64_data}"
+    return base64_with_mime
 
 def image_to_bytes(file_path):
     """
@@ -94,26 +127,6 @@ def array_to_bytes(img_array, mime_type="image/jpeg"):
         byte_data = buffer.getvalue()
     return byte_data
 
-def array_to_mime_type(img_array):
-    """
-    Get the MIME type from an image array by attempting to save it as a JPEG or PNG.
-
-    Args:
-        img_array (numpy.ndarray): Image represented as a NumPy array.
-
-    Returns:
-        str: Inferred MIME type of the image.
-    """
-    img = Image.fromarray(img_array)
-    with BytesIO() as buffer:
-        try:
-            img.save(buffer, format="JPEG")
-            return "image/jpeg"
-        except Exception:
-            buffer.truncate(0)
-            buffer.seek(0)
-            img.save(buffer, format="PNG")
-            return "image/png"
 
 def image_url_to_array(image_url):
     """
@@ -129,6 +142,23 @@ def image_url_to_array(image_url):
     response.raise_for_status()
     with Image.open(BytesIO(response.content)) as img:
         img_array = np.array(img)
+    return img_array
+
+def base64_to_array(base64_data):
+    """
+    Convert Base64 to a NumPy image array.
+
+    """
+    header, base64_data = base64_data.split(",")
+    inferred_mime = header.split(":")[1].split(";")[0]
+    byte_data = base64.b64decode(base64_data)
+    img = Image.open(BytesIO(byte_data))
+    img_array = np.array(img)
+    return inferred_mime,img_array
+
+def bytes_to_array(input_data:bytes) :
+    img = Image.open(BytesIO(input_data))
+    img_array = np.array(img)
     return img_array
 
 def convert_to_array(input_data, mime_type=None):
@@ -147,20 +177,14 @@ def convert_to_array(input_data, mime_type=None):
             img_array = image_url_to_array(input_data)
             inferred_mime = "image/jpeg"  # Default assumption for URL images
         elif len(input_data) % 4 == 0 and "/" in input_data and ";base64," in input_data:
-            header, base64_data = input_data.split(",")
-            inferred_mime = header.split(":")[1].split(";")[0]
-            byte_data = base64.b64decode(base64_data)
-            img = Image.open(BytesIO(byte_data))
-            img_array = np.array(img)
+            inferred_mime,img_array = base64_to_array(base64_data)
         else:
             raise ValueError("Invalid string format. Provide a valid URL or Base64 string.")
     elif isinstance(input_data, bytes):
-        img = Image.open(BytesIO(input_data))
-        img_array = np.array(img)
+        img_array = bytes_to_array(input_data)
         inferred_mime = mime_type if mime_type else "image/jpeg"
     else:
         raise TypeError("Unsupported input type. Provide a URL, Base64 string, or bytes.")
-
     return img_array, inferred_mime
 
 # Example usage
